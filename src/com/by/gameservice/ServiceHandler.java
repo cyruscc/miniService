@@ -29,8 +29,9 @@ public class ServiceHandler extends IoHandlerAdapter {
 		// TODO Auto-generated method stub
 		//super.messageReceived(session, message);
 		System.out.println("messageReceived:"+message);
-		if(message.equals("quick")){
-			session.write("quick;");
+		if(message.equals("quit")){
+			session.write("quick---");
+			session.closeNow();
 		}
 	}
 
