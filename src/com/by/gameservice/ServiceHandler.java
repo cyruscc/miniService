@@ -22,6 +22,7 @@ public class ServiceHandler extends IoHandlerAdapter {
 		// TODO Auto-generated method stub
 		//super.inputClosed(session);
 		System.out.println("inputClosed");
+		session.closeNow();
 	}
 
 	@Override
