@@ -6,6 +6,8 @@ import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 
+import com.by.gameservice.db.user.Login;
+
 public class ServiceHandler extends IoHandlerAdapter {
 
 	public static final Logger log = Logger.getLogger("ServiceHandler");
@@ -28,11 +30,16 @@ public class ServiceHandler extends IoHandlerAdapter {
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		// TODO Auto-generated method stub
-		//super.messageReceived(session, message);
+		super.messageReceived(session, message);
 		System.out.println("messageReceived:"+message);
 		if(message.equals("quit")){
 			session.write("quick---");
 			session.closeNow();
+		}
+		String message1 = (String) message;
+		if(message1.startsWith("Login")){
+			Login login = new Login();
+			login.loginUser("chenchao");
 		}
 	}
 
@@ -46,7 +53,8 @@ public class ServiceHandler extends IoHandlerAdapter {
 	@Override
 	public void sessionClosed(IoSession session) throws Exception {
 		// TODO Auto-generated method stub
-		super.sessionClosed(session);
+		//super.sessionClosed(session);
+		session.closeNow();
 		System.out.println("sessionClosed:");
 	}
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"             
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="person">
+	<!--
+		<typeAlias alias= type=VO> <insert id="insertUser"
+		parameterClass="Map"> INSERT INTO users ( username, password) VALUES (
+		#username#, #password# ) </insert>
+	-->
+	<select id="getperson" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		select * from tuser where username=#username#
+	</select>
+	<select id="getkuaidi" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT id,name FROM pro_kaidi
+		WHERE 1=1
+		<isNotEmpty prepend=" AND " property="kuainame">    
+           NAME = #kuainame# 
+		</isNotEmpty>  
+		<isNotEmpty prepend=" or " property="kuaibackidname">    
+           NAME = #kuaibackidname# 
+		</isNotEmpty>
+	</select>
+</sqlMap>
